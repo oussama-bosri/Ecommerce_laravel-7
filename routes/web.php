@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/activate/{code}', 'ActivationController@activateUserAcount')->name('user.activate');
+Route::get('/resend/{email}', 'ActivationController@resendActivationCode')->name('code.resend');

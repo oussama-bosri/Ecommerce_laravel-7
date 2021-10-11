@@ -8,7 +8,7 @@ use App\Mail\ActivateYourAccount;
 use App\User;
 class ActivationController extends Controller
 {
-    public function activation($code){
+    public function activateUserAcount($code){
         $user = User::whereCode($code)->first();
         $user->code = null;
         $user->update([
@@ -18,8 +18,8 @@ class ActivationController extends Controller
         return redirect("/")->withSuccess("connecté");
     }
     //send email to activate user account
-    public function resendCode($email){
-        $user = User::whereEmail($Email)->first();
+    public function resendActivationCode($email){
+        $user = User::whereEmail($email)->first();
         if($user->active){
             return redirect("/");
         }
