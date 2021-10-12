@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/activate/{code}', 'ActivationController@activateUserAcount')->name('user.activate');
-Route::get('/resend/{email}', 'ActivationController@resendActivationCode')->name('code.resend');
+Route::get('/activate/{code}', 'ActivationController@activateUserAcount')
+    ->name('user.activate');
+Route::get('/resend/{email}', 'ActivationController@resendActivationCode')
+    ->name('code.resend');
 Route::resource('products', 'ProductController');
+Route::get('products/category/{category}', 'HomeController@getProductByCategory')
+    ->name("category.products");
