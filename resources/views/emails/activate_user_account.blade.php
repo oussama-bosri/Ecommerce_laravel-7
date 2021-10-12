@@ -1,9 +1,9 @@
-@component('mail:message')
+@component('mail::message')
     #Thank you for activate your account
-    @component('mail:panel')
+    @component('mail::panel')
         for activate your account 
     @endcomponent
-    @component('mail:button',['url'=>$url])
+    @component('mail::button',['url'=>$url])
     click here
     @endcomponent
     Thank you
