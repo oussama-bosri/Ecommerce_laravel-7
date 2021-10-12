@@ -20,3 +20,4 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/activate/{code}', 'ActivationController@activateUserAcount')->name('user.activate');
 Route::get('/resend/{email}', 'ActivationController@resendActivationCode')->name('code.resend');
+Route::resource('products', 'ProductController');
