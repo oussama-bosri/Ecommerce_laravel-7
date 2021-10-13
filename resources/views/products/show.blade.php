@@ -47,7 +47,25 @@
 
             
                 <div class="col-md-4">
-
+                 <form action="">
+                     @csrf
+                     <div class="form-group">
+                         <label for="qty" class="label-input">
+                             Quntité :
+                         </label>
+                         <input type="number" name="qty" id="qty" 
+                         value="1" placeholder="Quantité"
+                         max="{{ $product->inStock }}"
+                         min="1"
+                         class="form-control" >
+                     </div>
+                     <div class="form-group">
+                         <button type="submit" class="btn btn-block text-white bg-dark">
+                             <i class="fa fa-shopping-cart"></i>
+                             Ajouter au panier
+                         </button>
+                     </div>
+                 </form>
                 </div>
         </div>
     </div>
