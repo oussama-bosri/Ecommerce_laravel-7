@@ -32,7 +32,7 @@
                                 <p class="card-text">
                                     {{ Str::limit($product->description,50) }}
                                 </p>
-                                <a href="{{ route("products.show",$product->slug) }}"
+                                <a href="{{ route("product.show",$product->slug) }}"
                                  class="btn btn-outline-primary"><i class="fas fa-chevron-right"></i></a>
                             </div>     
                             </div>

@@ -25,3 +25,5 @@ Route::get('/resend/{email}', 'ActivationController@resendActivationCode')
 Route::resource('products', 'ProductController');
 Route::get('products/category/{category}', 'HomeController@getProductByCategory')
     ->name("category.products");
+Route::get('products/{product}', 'ProductController@show')
+    ->name("product.show");
