@@ -47,7 +47,7 @@
 
             
                 <div class="col-md-4">
-                 <form action="">
+                 <form action="{{ route("add.cart",$product->slug) }}" method="post">
                      @csrf
                      <div class="form-group">
                          <label for="qty" class="label-input">
