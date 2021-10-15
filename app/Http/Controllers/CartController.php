@@ -10,7 +10,7 @@ class CartController extends Controller
     public function index()
     {
         return view('cart.index')->with([
-            "item" => \Cart::getContent()
+            "items" => \Cart::getContent()
         ]);
     }
 
@@ -34,7 +34,7 @@ class CartController extends Controller
     //update item on cart
     public function updateProductOnCart(Request $request, Product $product)
     {
-
+        \Log::info('This is some useful information.',$request->all());
         \Cart::update($product->id, array(
             'quantity' => array(
                 'relative' => false,
