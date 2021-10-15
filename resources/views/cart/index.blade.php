@@ -30,9 +30,10 @@
                             {{ $item->name }}
                         </td>
                         <td>
-                            <form class="d-flex flex-row justfy-content-center align-items-center" action="{{ route("update.cart",$item->associatedModel->slug) }}" method="post">
-                                
-                                @method("PUT")
+                            <form class="d-flex flex-row justfy-content-center align-items-center"
+                             action="{{ route("update.cart",$item->associatedModel->slug) }}" method="post">   
+                             @csrf   
+                             @method("PUT")
                                 <div class="form-group"> 
                                     <input type="number" name="qty" id="qty" 
                                     value="{{ $item->quantity }}" placeholder="Quantité"
@@ -52,6 +53,18 @@
                         </td>
                         <td>
                             {{ $item->price * $item->quantity }} DZD
+                        </td>
+                        <td>
+                            <form class="d-flex flex-row justfy-content-center align-items-center"
+                            action="{{ route("remove.cart",$item->associatedModel->slug) }}" method="post">   
+                            @csrf   
+                            @method("DELETE")
+                               <div class="form-group">
+                                   <button type="submit" class="btn btn-sm btn-danger">
+                                       <i class="fa fa-trash"></i>
+                                   </button>
+                               </div>
+                           </form>
                         </td>
                     </tr>  
                     @endforeach
