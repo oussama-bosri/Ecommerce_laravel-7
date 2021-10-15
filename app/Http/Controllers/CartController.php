@@ -18,11 +18,12 @@ class CartController extends Controller
     //add item to cart
     public function addProductToCart(Request $request, Product $product)
     {
+        \Log::info('This is some useful information.',$request->all());
         \Cart::add(array(
             "id" => $product->id,
             "name" => $product->title,
             "price" => $product->price,
-            "quntity" => $request->qty,
+            "quantity" => $request->qty,
             'attributes' => array(),
             'associatedModel' => $product,
         ));
