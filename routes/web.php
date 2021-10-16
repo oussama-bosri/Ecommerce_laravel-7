@@ -31,3 +31,8 @@ Route::get('/cart', 'CartController@index')->name('cart.index');
 Route::post('/add/cart/{product}', 'CartController@addProductToCart')->name('add.cart');
 Route::put('/update/{product}/cart', 'CartController@updateProductOnCart')->name('update.cart');
 Route::delete('/remove/{product}/cart', 'CartController@removeProductFromCart')->name('remove.cart');
+
+//Payment route
+Route::get('/handle-payment', 'PaypalPaymentContoller@handlePayment')->name('make.payment');
+Route::get('/success-payment', 'PaypalPaymentContoller@paymentSuccess')->name('success.payment');
+Route::get('/cancel-payment', 'PaypalPaymentContoller@paymentCancel')->name('cancel.payment');

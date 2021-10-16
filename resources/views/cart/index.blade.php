@@ -78,7 +78,14 @@
                     </tr>
                 </tbody>
             </table>
-
+            @if (Cart::getSubtotal() > 0)
+            <div class="form-group">
+                <a href="{{ route("make.payment") }}" class="btn btn-primary mt-3">
+                    payer {{ Cart::getSubtotal() }} DZD via Paypal
+                </a>
+            </div>
+                
+            @endif
         </div>
     </div>
 </div>
