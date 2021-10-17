@@ -36,3 +36,9 @@ Route::delete('/remove/{product}/cart', 'CartController@removeProductFromCart')-
 Route::get('/handle-payment', 'PaypalPaymentContoller@handlePayment')->name('make.payment');
 Route::get('/success-payment', 'PaypalPaymentContoller@paymentSuccess')->name('success.payment');
 Route::get('/cancel-payment', 'PaypalPaymentContoller@paymentCancel')->name('cancel.payment');
+
+//Admin route
+Route::get('/admin', 'AdminContoller@index')->name('admin.index');
+Route::get('/admin/login', 'AdminContoller@showAdminLoginForm')->name('admin.login');
+Route::post('/admin/login', 'AdminContoller@adminLogin')->name('admin.login');
+Route::get('/admin/logout', 'AdminContoller@adminLogout')->name('admin.logout');
