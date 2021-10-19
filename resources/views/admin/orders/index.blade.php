@@ -7,17 +7,18 @@
         </div>
         <div class="col-md-8">   
             <table class="table table-hover">
-                <th>
-                    <tr>Id</tr>
-                    <tr>client</tr>
-                    <tr>Produit</tr>
-                    <tr>Quantity</tr>
-                    <tr>Prix</tr>
-                    <tr>Total</tr>
-                    <tr>Payé</tr>
-                    <tr>Livrée</tr>
-                </th>
-                <thead>
+               <thead>
+                <tr>
+                <th>Id</th>
+                <th>Client</th>
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Prix</th>
+                <th>Total</th>
+                <th>Payé</th>
+                <th>Livré</th>
+                </tr>
+               </thead>
                     <tbody>
                      @foreach ($orders as $order )
                              <tr>
@@ -45,8 +46,10 @@
                          </tr>
                      @endforeach
                     </tbody>
-                </thead>
             </table>  
+            <div class="justify-content-center d-flex">
+                {{ $orders->links() }}
+            </div>
         </div>
     </div>
 </div>

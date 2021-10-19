@@ -6,48 +6,52 @@
         <div class="col-md-4">
         </div>
         <div class="col-md-8">   
-            <table class="table tabel-hover">
-                <th>
-                    <tr>Id</tr>
-                    <tr>client</tr>
-                    <tr>Produit</tr>
-                    <tr>Quantity</tr>
-                    <tr>Prix</tr>
-                    <tr>Total</tr>
-                    <tr>Payé</tr>
-                    <tr>Livrée</tr>
-                    <tr></tr>
-                </th>
-                <thead>
+            <table class="table table-hover">
+               <thead>
+                <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Quantité</th>
+                <th>Prix</th>
+                <th>Disponible</th>
+                <th>Image</th>
+                <th>Catégorie</th>
+                </tr>
+               </thead>
                     <tbody>
-                     @foreach ($orders as $order )
-                         <tr>
-                             <td>{{ $order->id }}</td>
-                             <td>{{ $order->user->name }}</td>
-                             <td>{{ $order->product_name }}</td>
-                             <td>{{ $order->qty }}</td>
-                             <td>{{ $order->price }} DZD</td>
-                             <td>{{ $order->total }} DZD</td>
+                     @foreach ($products as $product )
+                             <tr>
+                             <td>{{ $product->id }}</td>
+                             <td>{{ $product->title }}</td>
+                             <td>{{ Str::limit($product->description,50) }}</td>
+                             <td>{{ $product->inStock }}</td>
+                             <td>{{ $product->price }} DZD</td>
                              <td>
-                                 @if ($order->paid)
+                                 @if ($product->inStock >0)
                                      <i class="fa fa-check text-success"></i>
                                  @else
                                      <i class="fa fa-check text-danger"></i>   
                                  @endif
                              </td>
                              <td>
-                                 @if ($order->delivered)
-                                     <i class="fa fa-check text-success"></i>
-                                 @else
-                                     <i class="fa fa-check text-danger"></i>   
-                                 @endif
-                             </td>
+                                <img src="{{ $product->image }}" 
+                                     alt="{{ $product->title  }}"
+                                     width="50"
+                                     height="50"
+                                     class="img-fluid rounded"
+
+                                     >
+                            </td>
+                             <td>{{ $product->category->title }}</td>
                              <td></td>
                          </tr>
                      @endforeach
                     </tbody>
-                </thead>
             </table>  
+            <div class="justify-content-center d-flex">
+                {{ $products->links() }}
+            </div>
         </div>
     </div>
 </div>
