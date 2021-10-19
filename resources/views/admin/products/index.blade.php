@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
+            @include("layouts.sidebar")
         </div>
         <div class="col-md-8">   
             <table class="table table-hover">
