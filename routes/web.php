@@ -51,7 +51,7 @@ Route::get('/admin/login', 'AdminContoller@showAdminLoginForm')
      ->name('admin.login');
 Route::post('/admin/login', 'AdminContoller@adminLogin')
      ->name('admin.login');
-Route::get('/admin/logout', 'AdminContoller@adminLogout')
+Route::post('/admin/logout', 'AdminContoller@adminLogout')
      ->name('admin.logout');
 Route::get('/admin/products', 'AdminContoller@getProducts')
      ->name('admin.products');
