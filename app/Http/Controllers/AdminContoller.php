@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
+use App\Product;
 use Illuminate\Http\Request;
 
 class AdminContoller extends Controller
@@ -13,7 +15,10 @@ class AdminContoller extends Controller
         ->except(["showAdminLoginForm","adminLogin"]);
     } 
     public function index(){
-        return view("admin.index");
+        return view("admin.index")->with([
+            "products" => Product::all(),
+            "orders" => Order::all(),
+        ]);
     }
 
     public function showAdminLoginForm(){
@@ -41,5 +46,18 @@ class AdminContoller extends Controller
 
         auth()->guard("admin")->logout();
         return redirect()->route("admin.login");
+    }
+
+    public function getProducts (){
+        return view("admin.products.index")->with([
+            "products" => Product::latest()->paginate(5)
+        ]);
+        
+    }
+    public function getOrders (){
+        return view("admin.orders.index")->with([
+            "orders" => Order::latest()->paginate(5)
+        ]);
+        
     }
 }

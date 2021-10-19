@@ -50,6 +50,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+
+        if ($request->is("admin") || $request->is('admin/*')) {
+            return redirect()->guest("/admin/login");
+         }
         return parent::render($request, $exception);
     }
 }
