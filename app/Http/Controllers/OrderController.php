@@ -69,7 +69,10 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $order->update([
+             "delivered" => 1
+        ]);
+        return redirect()->back()->withSuccess("Commande modifiée");
     }
 
     /**
@@ -80,6 +83,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+       return redirect()->back()->withSuccess("Commande supprimée");
     }
 }

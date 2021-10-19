@@ -57,3 +57,6 @@ Route::get('/admin/products', 'AdminContoller@getProducts')
      ->name('admin.products');
 Route::get('/admin/orders', 'AdminContoller@getOrders')
      ->name('admin.orders');
+
+//orderss routes
+Route::resource('orders', 'OrderController');

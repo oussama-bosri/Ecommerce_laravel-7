@@ -42,7 +42,26 @@
                                      <i class="fa fa-check text-danger"></i>   
                                  @endif
                              </td>
-                             <td></td>
+                             <td class="d-flex flex-row justify-content-center align-items-center">
+                                <form method="POST" action="{{ route("orders.update",$order->id) }}">
+                                @csrf
+                                @method("PUT")
+                                <button class="btn btn-sm btn-success">
+                                    <i class="fa fa-check"></i>
+                                </button>
+                                </form>
+                                <form id="{{ $order->id }}" method="POST" action="{{ route("orders.destroy",$order->id) }}">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button onclick="event.preventDefault();
+                                    if(confirm('Voulez vous vraiment supprimer la commande {{ $order->id }} ?'))
+                                      document.getElementById({{ $order->id }}).submit();
+                                    " 
+                                    class="btn btn-sm btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                    </form>    
+                             </td>
                          </tr>
                      @endforeach
                     </tbody>
