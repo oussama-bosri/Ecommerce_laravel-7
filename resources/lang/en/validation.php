@@ -130,8 +130,9 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'titre' => [
+            'required' => 'Veuillez entrer le titre',
+            'min' => 'le champ titre doit avoir au moins :min caractéres'
         ],
     ],
 

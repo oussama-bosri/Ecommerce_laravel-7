@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Product;
+use App\Category;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+
 
 class ProductController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware("auth:admin")->except([
+            "index" , "show" ,
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +39,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.products.create")->with([
+          "categories" => Category::all()
+        ]);
     }
 
     /**
@@ -39,7 +52,33 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validation
+        $this->validate($request,[
+            "title" => "required|min:3",
+            "description" => "required|min:6",
+            "image" => "required|image|mimes:png,jpg,jpeg|max:2048",
+            "price" => "required|numiric",
+            "category_id" => "required|numiric",
+        ]);
+        //add data
+        if($request->has("image")){
+            $file = $request->image;
+            $imageName = "images/products/".time()."_".$file
+            ->getClientOriginalName();  
+            $file->move(public_path("images/products"),$imageName);
+            $title = $request->title;  
+            Product::create([
+                "title" => $title,
+                "slug" => Str::slug($title),
+                "description" => $request->description,
+                "price" => $request->price,
+                "old_price" => $request->old_price,
+                "inStock" => $request->inStock,
+                "category_id" => $request->category_id,
+                "image" => $imageName,
+            ]); 
+            return redirect()->route("admin.products")->withSuccess("Produit ajouté");   
+        }
     }
 
     /**
@@ -63,7 +102,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view("admin.products.edit")->with([
+            "products" =>$product,
+            "categories" => Category::all()
+        ]);
     }
 
     /**
@@ -75,7 +117,41 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+                //validation
+        $this->validate($request,[
+            "title" => "required|min:3",
+            "description" => "required|min:6",
+            "image" => "image|mimes:png,jpg,jpeg|max:2048",
+            "price" => "required|numiric",
+            "category_id" => "required|numiric",
+        ]);
+        
+        //update data
+        if($request->has("image")){
+            $image_path = public_path("images/products/" . $product->image);
+            if(File::exists($image_path)){
+                unlink($image_path);
+            }
+            $file = $request->image;
+            $imageName = "images/products/".time()."_".$file
+            ->getClientOriginalName();  
+            $file->move(public_path("images/products"),$imageName);
+            $product->image = $imageName;
+        }
+        $title = $request->title; 
+            $product->update([
+                "title" => $title,
+                "slug" => Str::slug($title),
+                "description" => $request->description,
+                "price" => $request->price,
+                "old_price" => $request->old_price,
+                "inStock" => $request->inStock,
+                "category_id" => $request->category_id,
+                "image" => $product->image,
+            ]); 
+            return redirect()->route("admin.products")
+            ->withSuccess("Produit modifie");   
+        
     }
 
     /**
@@ -86,6 +162,13 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+                    //delete data
+                $image_path = public_path("images/products/" . $product->image);
+                if(File::exists($image_path)){
+                    unlink($image_path);
+                }
+                 $product->delete();
+                 return redirect()->route("admin.products")
+                 ->withSuccess("Produit supprimé");
     }
 }

@@ -45,7 +45,19 @@
                                      >
                             </td>
                              <td>{{ $product->category->title }}</td>
-                             <td></td>
+                             <td>
+                                <form id="{{ $product->id }}" method="POST" action="{{ route("products.destroy",$product->slug) }}">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button onclick="event.preventDefault();
+                                    if(confirm('Voulez vous vraiment supprimer le produit {{ $product->title }} ?'))
+                                      document.getElementById({{ $product->id }}).submit();
+                                    " 
+                                    class="btn btn-sm btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                    </form>
+                             </td>
                          </tr>
                      @endforeach
                     </tbody>

@@ -21,6 +21,7 @@ Route::get('/resend/{email}', 'ActivationController@resendActivationCode')
 
 //products routes
 Route::resource('products', 'ProductController');
+Route::delete('products/{id}', 'ProductController@Destroy')->name('products.destroy ');
 Route::get('products/category/{category}', 'HomeController@getProductByCategory')
     ->name("category.products");
 Route::get('products/{product}', 'ProductController@show')
@@ -51,7 +52,7 @@ Route::get('/admin/login', 'AdminContoller@showAdminLoginForm')
      ->name('admin.login');
 Route::post('/admin/login', 'AdminContoller@adminLogin')
      ->name('admin.login');
-Route::post('/admin/logout', 'AdminContoller@adminLogout')
+Route::get('/admin/logout', 'AdminContoller@adminLogout')
      ->name('admin.logout');
 Route::get('/admin/products', 'AdminContoller@getProducts')
      ->name('admin.products');
