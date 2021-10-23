@@ -20,7 +20,7 @@
                     @foreach ($items as $item  )
                     <tr>
                         <td>
-                            <img src="{{ $item->associatedModel->image }}" 
+                            <img src="{{ asset($item->associatedModel->image) }}" 
                             alt="{{ $item->title }}"
                             width="50"
                             height="50"

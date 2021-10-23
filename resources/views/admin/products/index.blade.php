@@ -6,7 +6,12 @@
         <div class="col-md-4">
             @include("layouts.sidebar")
         </div>
-        <div class="col-md-8">   
+        <div class="col-md-8"> 
+            <a href="{{ route("products.create") }}"
+            class="btn btn-primary my-2">
+            <i class="fa fa-plus"></i>
+            
+            </a>  
             <table class="table table-hover">
                <thead>
                 <tr>
@@ -36,7 +41,7 @@
                                  @endif
                              </td>
                              <td>
-                                <img src="{{ $product->image }}" 
+                                <img src="{{ asset($product->image) }}" 
                                      alt="{{ $product->title  }}"
                                      width="50"
                                      height="50"
@@ -45,7 +50,12 @@
                                      >
                             </td>
                              <td>{{ $product->category->title }}</td>
-                             <td>
+                             <td class="d-flex flex-row justify-content-center align-items-center">
+                                <a href="{{ route("products.edit",$product->slug) }}"
+                                class="btn btn-sm btn-warning mr-2">
+                                <i class="fa fa-edit"></i>
+                                
+                                </a>
                                 <form id="{{ $product->id }}" method="POST" action="{{ route("products.destroy",$product->slug) }}">
                                     @csrf
                                     @method("DELETE")

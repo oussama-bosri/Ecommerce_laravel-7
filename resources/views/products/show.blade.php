@@ -7,7 +7,7 @@
             <div class="card">
                <h3 class="card-header">{{ $product->title }}</h3>
                              <div class="card-img-top">
-                                <img class="img-fluid w-100" src="{{ $product->image }}" 
+                                <img class="img-fluid w-100" src="{{ asset($product->image) }}" 
                                 alt="{{ $product->title }}">
                             </div>  
                             <div class="card-body">

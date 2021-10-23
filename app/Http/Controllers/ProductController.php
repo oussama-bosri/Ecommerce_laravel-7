@@ -57,8 +57,8 @@ class ProductController extends Controller
             "title" => "required|min:3",
             "description" => "required|min:6",
             "image" => "required|image|mimes:png,jpg,jpeg|max:2048",
-            "price" => "required|numiric",
-            "category_id" => "required|numiric",
+            "price" => "required|numeric",
+            "category_id" => "required|numeric",
         ]);
         //add data
         if($request->has("image")){
@@ -103,7 +103,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         return view("admin.products.edit")->with([
-            "products" =>$product,
+            "product" =>$product,
             "categories" => Category::all()
         ]);
     }
@@ -122,8 +122,8 @@ class ProductController extends Controller
             "title" => "required|min:3",
             "description" => "required|min:6",
             "image" => "image|mimes:png,jpg,jpeg|max:2048",
-            "price" => "required|numiric",
-            "category_id" => "required|numiric",
+            "price" => "required|numeric",
+            "category_id" => "required|numeric",
         ]);
         
         //update data
@@ -138,7 +138,7 @@ class ProductController extends Controller
             $file->move(public_path("images/products"),$imageName);
             $product->image = $imageName;
         }
-        $title = $request->title; 
+            $title = $request->title; 
             $product->update([
                 "title" => $title,
                 "slug" => Str::slug($title),
@@ -151,6 +151,7 @@ class ProductController extends Controller
             ]); 
             return redirect()->route("admin.products")
             ->withSuccess("Produit modifie");   
+            \Log::info('This is some useful information.',$request->all());
         
     }
 
