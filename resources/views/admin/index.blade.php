@@ -1,36 +1,36 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <a href="{{ route("admin.products") }}" style="text-decoration: none">
-                <div class="card bg-primary text-white">
-                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                    <h3>Produits</h3>
-                    <span class="font-weight-bold">
-                        {{ $products->count() }}
-                    </span>
-                  </div>
-              </div>
-            </a>  
-        </div>
+    <div class="container">
+        <div class="row justify-content-center">
             <div class="col-md-4">
-                <a href="{{ route("admin.orders")  }}" style="text-decoration: none">
-                  <div class="card bg-danger text-white">
-                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
-                      <h3>Commandes</h3>
-                      <span class="font-weight-bold">
-                          {{ $orders->count() }}
-                      </span>
-                  </div>
-                  </div>
-                </div>
+                <a href="{{ route('admin.products') }}" style="text-decoration: none">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                            <h3>Products</h3>
+                            <span class="font-weight-bold">
+                                {{ $products->count() }}
+                            </span>
+                        </div>
+                    </div>
                 </a>
-           
-                
-                </div>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ route('admin.orders') }}" style="text-decoration: none">
+                    <div class="card bg-danger text-white">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                            <h3>Orders</h3>
+                            <span class="font-weight-bold">
+                                {{ $orders->count() }}
+                            </span>
+                        </div>
+                    </div>
+            </div>
+            </a>
+
+
+        </div>
 
     </div>
-</div>
+    </div>
 @endsection

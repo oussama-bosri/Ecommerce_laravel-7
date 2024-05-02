@@ -9,8 +9,8 @@
     <div class="col-md-8">
         <div class="card p-3">
            <h3 class="card-title m-4">
-               Aouter un produit
-               </h3> 
+            Add a product
+               </h3>
                <div class="card-body">
                 <form method="POST" action="{{ route("products.store") }}" enctype="multipart/form-data">
                 @csrf
@@ -21,7 +21,7 @@
                     class="form-control">
                 </div>
                 <div class="form-group">
-                <textarea name="description" placeholder="Description" 
+                <textarea name="description" placeholder="Description"
                          cols="30" rows="10" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
@@ -44,23 +44,23 @@
                 </div>
                 <div class="form-group">
                     <input type="file"
-                    name="image" 
+                    name="image"
                     class="form-control">
                 </div>
                 <div class="form-group">
                   <select name="category_id" id="" class="form-control">
                       <option value="" selected disabled>
-                          Choisir une catégorie
+                        Choose a category
                       </option>
                       @foreach ($categories as $category )
                          <option value="{{ $category->id }}">
                           {{ $category->title }}
-                        </option> 
+                        </option>
                       @endforeach
                   </select>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Valider</button>
+                    <button type="submit" class="btn btn-primary">Validate</button>
                 </div>
                 </form>
                </div>
